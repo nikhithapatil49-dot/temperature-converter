@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body style="font-family:Arial;text-align:center;margin-top:50px">
+
+<h2>Temp Converter</h2>
+
+Celsius: <input id="c" oninput="convert('c')"><br><br>
+Fahrenheit: <input id="f" oninput="convert('f')"><br><br>
+Kelvin: <input id="k" oninput="convert('k')"><br><br>
+
+<button onclick="c.value='';f.value='';k.value=''">Clear</button>
+
+<script>
+function convert(type){
+ let c=document.getElementById('c');
+ let f=document.getElementById('f');
+ let k=document.getElementById('k');
+
+ if(type=='c'){
+   let C=parseFloat(c.value);
+   if(isNaN(C)) return;
+   f.value=(C*9/5+32).toFixed(2);
+   k.value=(C+273.15).toFixed(2);
+ }
+ if(type=='f'){
+   let F=parseFloat(f.value);
+   if(isNaN(F)) return;
+   let C=(F-32)*5/9;
+   c.value=C.toFixed(2);
+   k.value=(C+273.15).toFixed(2);
+ }
+ if(type=='k'){
+   let K=parseFloat(k.value);
+   if(K<0){alert('Kelvin < 0 undadu'); k.value=''; return}
+   if(isNaN(K)) return;
+   let C=K-273.15;
+   c.value=C.toFixed(2);
+   f.value=(C*9/5+32).toFixed(2);
+ }
+}
+</script>
+</body>
+</html>
